@@ -19,7 +19,8 @@ public:
 
     void draw()
     {
-        DrawModel(_model, {0, 0, 0}, 1.0f, WHITE);
+        DrawModelEx(_model, {0, 0, 0}, {0, 1, 0}, -180.0f,
+                    {1, 1, 1}, WHITE);
     }
 
 private:

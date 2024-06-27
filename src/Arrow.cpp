@@ -7,6 +7,7 @@
 Arrow::Arrow(const cyclone::Vector3& position, const cyclone::Vector3& direction, float speed, float mass)
         : _position(position), _direction(direction), _speed(speed), _particle()
 {
+    _particle.setPosition(position);
     _particle.setMass(mass); //mass
     _particle.setDamping(0.2f); //damping
     _particle.setAcceleration(cyclone::Vector3::GRAVITY);  //initial acc.
