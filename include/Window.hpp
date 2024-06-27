@@ -13,6 +13,9 @@ public:
     void begin() const ;
     void end() const;
 
+    void begin3D(const Camera3D& camera) const ;
+    void end3D() const;
+
 private:
     int _height = 800;
     int _width = 600;

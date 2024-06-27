@@ -3,6 +3,7 @@ project(Archery)
 
 # Generate compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_STANDARD 20)
 
 # Dependencies
 set(RAYLIB_VERSION 5.0)
@@ -27,9 +28,11 @@ endif()
 file(GLOB_RECURSE SRC
         ${PROJECT_SOURCE_DIR}/src/*.cpp
         ${PROJECT_SOURCE_DIR}/src/*.c
+        ${PROJECT_SOURCE_DIR}/externals/Cyclone/src/*.cpp
 )
 include_directories(
     ${CMAKE_SOURCE_DIR}/include/
+    ${CMAKE_SOURCE_DIR}/externals/Cyclone/include/
 )
 add_executable(${PROJECT_NAME} main.cpp ${SRC})
 
