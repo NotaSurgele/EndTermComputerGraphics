@@ -42,3 +42,13 @@ void Window::end3D() const
 {
     EndMode3D();
 }
+
+void Window::begin2D(const Camera2D& camera) const
+{
+    BeginMode2D(camera);
+}
+
+void Window::end2D() const
+{
+    EndMode3D();
+}
