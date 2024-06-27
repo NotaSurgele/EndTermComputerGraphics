@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Window.hpp"
+#include "Arrow.hpp"
 
 int main(void)
 {
@@ -12,18 +13,34 @@ int main(void)
     camera.fovy = 45.0f;                                // Camera field-of-view Y
     camera.projection = CAMERA_PERSPECTIVE;             // Camera mode type
 
-    Vector3 cubePosition = { 0.0f, 0.0f, 0.0f };
+    // Create an instance of Arrow
+    cyclone::Vector3 arrowPosition = { 0.0f, 0.0f, 0.0f };
+    cyclone::Vector3 arrowDirection = { 1.0f, 0.0f, 0.0f };
+    float arrowSpeed = 5.0f;
+    float arrowMass = 1.0f;
+    Arrow arrow(arrowPosition, arrowDirection, arrowSpeed, arrowMass);
 
+    arrow.launch();
     while (!window.shouldClose())  {
+        float delta = GetFrameTime();
+
         window.clearBackground(RAYWHITE);
 
         window.begin();
         {
             window.begin3D(camera);
-            // DRaw cubes
+
+            // Draw arrow
             {
-                DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
-                DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
+                if (delta > 0.0f) {
+                    std::cout << delta << std::endl;
+                    arrow.update(delta);
+                }
+                Vector3 arrowPositionRayLib = arrow.getPositionRayLib();
+                cyclone::Vector3 position = arrow.getPosition();
+
+                std::cout << "Position " << position.x << " " << position.y << " " << position.z << std::endl;
+                DrawCube(arrowPositionRayLib, 0.2f, 0.2f, 0.2f, BLUE);
             }
             window.end3D();
         }
